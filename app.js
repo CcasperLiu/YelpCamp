@@ -1,38 +1,20 @@
 var express = require("express"),
     app= express(),
     bodyParser = require("body-parser"),
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    Campground = require("./models/campground"),
+    Comment = require("./models/comment"),
+    seedDB= require("./seeds");
 
-mongoose.connect("mongodb://localhost/yelp_camp",{useNewUrlParser: true, useUnifiedTopology: true});
+
+
+seedDB();
+mongoose.connect("mongodb://localhost/yelp_camp_v3",{useNewUrlParser: true, useUnifiedTopology: true});
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 
 //SCHEMA SETUP
 
-var campgroundSchema = new mongoose.Schema({
-  name:String,
-  image:String,
-  description:String,
-});
-
-var Campground = mongoose.model("Campground",campgroundSchema);
-
-// Campground.create(
-//   {
-//     name:"Granite Hills",
-//     image:"https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/25201637/day_2_dec_14_085.jpg",
-//     description: "This is a huge granite hill, no bathroom, no water!"
-//   }, function(err, campground){
-//      if (err) console.log(err);
-//      else {
-//       console.log("newly created campground");
-//       console.log(campground);
-//      }
-//   });
-
-var campgrounds = [{name:"num1", image:"https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/25201637/day_2_dec_14_085.jpg"}
-      ,{name:"num2", image:"https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/25201637/day _2_dec_14_085.jpg"}
-];
 
 app.get("/", function(req,res){
 	 res.render("landing");
@@ -71,9 +53,10 @@ app.get("/campgrounds/new", function(req,res){
 
 app.get("/campgrounds/:id",function(req,res){
   //find the campground that matches the id, and show it.
-  Campground.findById(req.params.id, function(err,foundCampground){
+  Campground.findById(req.params.id).populate("comments").exec(function(err,foundCampground){
     if(err) console.log(err);
     else{
+      console.log(foundCampground);
       res.render("show",{campground:foundCampground});
     }
   });
