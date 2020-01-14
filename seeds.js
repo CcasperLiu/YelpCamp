@@ -6,17 +6,17 @@ var data =[
   {
     name:"cloud's rest",
     image:"http://www.thecampbar.com/wp-content/uploads/2017/07/bonfire-camp-campfire-1061640-3-768x1148.jpg",
-    description:"blah blah blah"
+    description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque adipisci saepe qui velit minus sequi voluptatum, sit, vero sunt tempora."
   },
   {
     name:"milky way",
     image:"https://5a6a246dfe17a1aac1cd-b99970780ce78ebdd694d83e551ef810.ssl.cf1.rackcdn.com/orgheaders/3395/night%20camp%20lassen.jpg",
-    description:"blah blah blah"
+    description:"blah blah blahLorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque adipisci saepe qui velit minus sequi voluptatum, sit, vero sunt tempora."
   },
   {
     name:"green tent",
     image:"https://maotchitim.org/wp-content/uploads/2019/07/camp-2587926_960_720.jpg",
-    description:"blah blah blah"
+    description:"blah blah blahLorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque adipisci saepe qui velit minus sequi voluptatum, sit, vero sunt tempora."
   }
 ]
 
